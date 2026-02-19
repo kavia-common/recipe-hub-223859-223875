@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { AuthProvider } from "@/components/AuthProvider";
+import { TopNav } from "@/components/TopNav";
 
 export const metadata: Metadata = {
-  title: "Minimal Next.js App",
-  description: "Ultra-minimal Next.js application",
+  title: "Recipe Hub (Retro)",
+  description:
+    "A retro-themed recipe app with browsing, favorites, CRUD, and shopping lists.",
 };
 
 export default function RootLayout({
@@ -14,7 +17,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        {children}
+        <div className="retro-app">
+          <AuthProvider>
+            <TopNav />
+            <main className="retro-main">
+              <div className="retro-container">{children}</div>
+            </main>
+          </AuthProvider>
+        </div>
       </body>
     </html>
   );
